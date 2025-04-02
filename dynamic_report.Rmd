@@ -1,0 +1,64 @@
+---
+title: My dynamic report
+output: html_fragment
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE, error=FALSE)
+
+```
+
+```{css}
+h2 {color: #b603fc}
+
+```
+
+## Types of Content Recommended by Instagram
+
+This dynamic report showcases my findings through my observational logging of the types of content recommended to me on my **Instagram** feed. I kept track of the **most commonly recommended** categories of posts and **how often** they showed up!
+
+```{r}
+library(tidyverse)
+
+#Load dataset
+logged_data <- read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQ9boQpLDHDq1YCRuEGHy9ZEcp4OE6-CgbRvjk-BJb5wYNVWooXHQtZ4snHSrBNwZ5lzbMQjRdXEnKL/pub?output=csv")
+
+#Rename categories
+latest_data <- rename(logged_data,
+                      timestamp = 1,
+                      content_type = 2,
+                      content_number = 3,
+                      happiness = 4)
+
+#First summary value: mean happiness
+mean_happiness <- mean(latest_data$happiness)
+
+#Second summary value: minimum number of most common posts
+min_posts <- min(latest_data$content_number)
+
+#First bar chart: counts of different types of content
+latest_data %>%
+  ggplot() +
+  geom_bar(aes(x = content_type, fill = timestamp)) +
+  labs(title = "Most common types of content per day",
+       subtitle = "The most common forms of content recommended by Instagram,
+       sorted by day!",
+       caption = "by Zaid",
+       x = "Type of content",
+       y = "Count of 'most common' appearances")
+
+#Second bar chart: counts of different levels of happiness with content
+latest_data %>%
+  ggplot() +
+  geom_bar(aes(x = happiness, fill = timestamp)) +
+  labs(title = "Happiness with recommendations by day",
+       subtitle = "How satisfied Instagram's recommendations made me.",
+       caption = "by Zaid",
+       x = "Happiness",
+       y = "Count")
+```
+
+Here are a few extra points of interest about the data above:
+
+-   The average level of happiness was `r mean_happiness`
+-   The minimum number of "most common" posts was `r min_posts`
