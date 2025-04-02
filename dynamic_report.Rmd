@@ -9,8 +9,8 @@ knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE, error=FALSE)
 ```
 
 ```{css}
-h2 {color: #b603fc}
-
+h2 {color: #b603fc;
+    padding: 25px}
 ```
 
 ## Types of Content Recommended by Instagram
@@ -39,8 +39,8 @@ min_posts <- min(latest_data$content_number)
 #First bar chart: counts of different types of content
 latest_data %>%
   ggplot() +
-  geom_bar(aes(x = content_type, fill = timestamp)) +
-  labs(title = "Most common types of content per day",
+  geom_bar(aes(x = content_type)) +
+  labs(title = "Most common types of content",
        subtitle = "The most common forms of content recommended by Instagram,
        sorted by day!",
        caption = "by Zaid",
@@ -50,15 +50,32 @@ latest_data %>%
 #Second bar chart: counts of different levels of happiness with content
 latest_data %>%
   ggplot() +
-  geom_bar(aes(x = happiness, fill = timestamp)) +
-  labs(title = "Happiness with recommendations by day",
+  geom_bar(aes(x = happiness, fill = content_type)) +
+  labs(title = "Happiness with recommendations by type",
        subtitle = "How satisfied Instagram's recommendations made me.",
        caption = "by Zaid",
        x = "Happiness",
        y = "Count")
 ```
 
-Here are a few extra points of interest about the data above:
+*Here are a few extra points of interest about the data above:*
 
 -   The average level of happiness was `r round(mean_happiness, 1)`
+
+```{r}
+library(magick)
+
+image_read("smiley.jpg") %>%
+  image_scale("500x400")
+
+```
+
 -   The minimum number of "most common" posts was `r min_posts`
+
+```{r}
+library(magick)
+
+image_read("minimum.jpg") %>%
+  image_scale("500x400")
+
+```
