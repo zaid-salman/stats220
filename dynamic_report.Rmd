@@ -65,7 +65,7 @@ latest_data %>%
 ```{r}
 library(magick)
 
-image_read("smiley.jpg") %>%
+image_read("https://unsplash.com/photos/person-in-white-shoes-standing-on-gray-concrete-road-1pAwJiCD60c") %>%
   image_scale("500x400")
 
 ```
@@ -75,7 +75,7 @@ image_read("smiley.jpg") %>%
 ```{r}
 library(magick)
 
-image_read("minimum.jpg") %>%
+image_read("https://unsplash.com/photos/man-in-red-and-white-checkered-dress-shirt-wearing-black-fedora-hat-Oe3JidQ9UvU") %>%
   image_scale("500x400")
 
 ```
