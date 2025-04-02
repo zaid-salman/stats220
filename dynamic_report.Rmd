@@ -60,5 +60,5 @@ latest_data %>%
 
 Here are a few extra points of interest about the data above:
 
--   The average level of happiness was `r mean_happiness`
+-   The average level of happiness was `r round(mean_happiness, 1)`
 -   The minimum number of "most common" posts was `r min_posts`
